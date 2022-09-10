@@ -1,22 +1,20 @@
 function Character({ character }) {
   return (
     <div>
-      <p> character : {character.char_id}</p>
+      <p> character : {character[0].name}</p>
     </div>
   );
 }
 
-export const getServerSideProps = async (context) => {
-  console.log("context", context.params);
-  const res = await fetch(`https://www.breakingbadapi.com/api/characters/1`);
+export async function getServerSideProps(context) {
+  const res = await fetch(
+    `https://www.breakingbadapi.com/api/characters/${context.params.id}`
+  );
 
   const character = await res.json();
-
   return {
-    props: {
-      character,
-    },
+    props: { character }, // will be passed to the page component as props
   };
-};
+}
 
 export default Character;
