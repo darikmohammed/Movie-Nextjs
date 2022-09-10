@@ -6,7 +6,7 @@ function Card({ desc }) {
       <div className="absolute bg-slate-700 text-white p-1 rounded-xl top-10 right-8">
         {desc.status}
       </div>
-      <Link href={`/charcaters/${desc.char_id}`}>
+      <Link href="/charcaters/[id]" as={`/charcaters/${desc.char_id}`}>
         <div className="mt-3 flex flex-col">
           <img className="w-80 h-80 rounded-2xl" src={desc.img} />
           <div className="flex justify-between">
