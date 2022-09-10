@@ -1,23 +1,15 @@
 import React from "react";
-import Link from "next/link";
+import Card from "../components/Card";
 
-export default function characters({moviesCharacters}) {
+export default function characters({ moviesCharacters }) {
   return (
-    <div className="flex flex-wrap justify-center gap-5">
-      {moviesCharacters.map(movie => (
-        <>
-           <Link href={`/charcaters/${movie.char_id}`}>
-              <div className="mt-3">
-                <img className="h-80 w-80" src={movie.img}/>   
-                <h1>{movie.name}</h1>
-              </div>
-           </Link>  
-        </>
+    <div className="grid grid-cols-1 gap-5 justify-items-center mt-4 md:grid-cols-3">
+      {moviesCharacters.map((movie) => (
+        <Card key={movie.char_id} desc={movie} />
       ))}
     </div>
   );
 }
-
 
 export const getStaticProps = async () => {
   const res = await fetch(`https://www.breakingbadapi.com/api/characters`);
@@ -25,7 +17,7 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      moviesCharacters
-    }
-  }
-}
+      moviesCharacters,
+    },
+  };
+};
